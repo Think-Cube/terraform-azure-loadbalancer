@@ -3,13 +3,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.3 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.46.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.57.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.46.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.57.0 |
 
 ## Modules
 
@@ -19,13 +19,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_lb.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.46.0/docs/resources/lb) | resource |
-| [azurerm_lb_backend_address_pool.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.46.0/docs/resources/lb_backend_address_pool) | resource |
-| [azurerm_lb_outbound_rule.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.46.0/docs/resources/lb_outbound_rule) | resource |
-| [azurerm_lb_probe.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.46.0/docs/resources/lb_probe) | resource |
-| [azurerm_lb_rule.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.46.0/docs/resources/lb_rule) | resource |
-| [azurerm_public_ip.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.46.0/docs/resources/public_ip) | resource |
-| [azurerm_resource_group.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.46.0/docs/data-sources/resource_group) | data source |
+| [azurerm_lb.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.57.0/docs/resources/lb) | resource |
+| [azurerm_lb_backend_address_pool.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.57.0/docs/resources/lb_backend_address_pool) | resource |
+| [azurerm_lb_outbound_rule.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.57.0/docs/resources/lb_outbound_rule) | resource |
+| [azurerm_lb_probe.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.57.0/docs/resources/lb_probe) | resource |
+| [azurerm_lb_rule.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.57.0/docs/resources/lb_rule) | resource |
+| [azurerm_public_ip.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.57.0/docs/resources/public_ip) | resource |
+| [azurerm_resource_group.main](https://registry.terraform.io/providers/hashicorp/azurerm/4.57.0/docs/data-sources/resource_group) | data source |
 
 ## Inputs
 
