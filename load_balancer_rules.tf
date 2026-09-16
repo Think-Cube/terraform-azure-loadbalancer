@@ -11,6 +11,6 @@ resource "azurerm_lb_rule" "main" {
   probe_id                       = var.lb_rules[count.index].probe_id
   load_distribution              = var.lb_rules[count.index].load_distribution
   idle_timeout_in_minutes        = var.lb_rules[count.index].idle_timeout_in_minutes
-  enable_floating_ip             = var.lb_rules[count.index].enable_floating_ip
+  floating_ip_enabled            = var.lb_rules[count.index].floating_ip_enabled
   disable_outbound_snat          = var.lb_rules[count.index].disable_outbound_snat
 }

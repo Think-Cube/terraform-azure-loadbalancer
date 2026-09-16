@@ -127,7 +127,7 @@ variable "lb_rules" {
     probe_id                       = string
     load_distribution              = string
     idle_timeout_in_minutes        = number
-    enable_floating_ip             = bool
+    floating_ip_enabled            = bool
     disable_outbound_snat          = bool
   }))
   default = []
