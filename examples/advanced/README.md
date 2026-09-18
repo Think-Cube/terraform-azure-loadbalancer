@@ -1,89 +1,71 @@
-# Terraform Azure Load Balancer Module – Advanced Example
+﻿# Example: Advanced -- Azure Load Balancer
 
-This example demonstrates an **internal Azure Load Balancer** deployment with a static private IP, backend pool, health probe, load balancing rule, and an outbound rule.
+Deploys a Standard Load Balancer with zone-redundant public IP, health probe, backend pool and two LB rules (HTTP and HTTPS with floating_ip_enabled).
 
-## Description
+```hcl
+module "load_balancer" {
+  source = "github.com/Think-Cube/terraform-azure-loadbalancer?ref=v1.0.0"
 
-- Creates an internal Load Balancer using a private subnet and static IP
-- Configures a backend address pool for internal VMs
-- Adds a TCP health probe (port 443) and a HTTPS load balancing rule
-- Configures an outbound rule for egress traffic
-- Suitable for production environments requiring internal networking
+  resource_group_name     = "rg-example"
+  resource_group_location = "West Europe"
 
-## Features
-
-- Internal Load Balancer with static private IP
-- Backend address pool support
-- Health probe and load balancing rule
-- Outbound rule for internet egress
-- Configurable idle timeout, load distribution, and SNAT
-- Tags for resource identification
-
-## Example Usage
-
-```yml
-module "lb_advanced" {
-  source = "../../"
-
-  environment         = "prod"
-  region              = "weu"
-  resource_group_name = "rg-prod"
-  lb_name             = "internal-lb"
-  use_public_ip       = false
-  subnet_id           = "/subscriptions/xxxx/resourceGroups/rg-prod/providers/Microsoft.Network/virtualNetworks/vnet-prod/subnets/subnet-backend"
-  use_static_ip       = true
-  private_ip_address  = "10.10.1.10"
-  frontend_ip_config_name = "internalFrontend"
-
-  default_tags = {
-    project = "core"
-    env     = "prod"
-  }
-
-  lb_backend_address_pools = [
-    {
-      name            = "backend-pool"
-      loadbalancer_id = ""
-    }
-  ]
-
-  lb_outbound_rules = [
-    {
-      name                     = "outbound-rule"
-      loadbalancer_id          = ""
-      backend_address_pool_id  = ""
-      protocol                 = "All"
-      allocated_outbound_ports = 2048
-      idle_timeout_in_minutes  = 10
-      frontend_ip_configuration = [
-        { name = "internalFrontend" }
-      ]
-    }
-  ]
-
-  lb_probes = [
-    {
-      name            = "https-probe"
-      loadbalancer_id = ""
-      protocol        = "Tcp"
-      port            = 443
-    }
-  ]
+  public_ip_name          = "pip-lb-example-adv"
+  lb_name                 = "lb-example-adv"
+  frontend_ip_config_name = "FrontendIPConfig"
+  lb_sku                  = "Standard"
+  pip_enable_zones        = true
+  pip_zones               = ["1", "2", "3"]
 
   lb_rules = [
     {
-      name                           = "https-rule"
+      name                           = "rule-https"
       protocol                       = "Tcp"
       frontend_port                  = 443
       backend_port                   = 443
-      frontend_ip_configuration_name = "internalFrontend"
-      backend_address_pool_ids       = []
-      probe_id                       = ""
+      frontend_ip_configuration_name = "FrontendIPConfig"
+      backend_address_pool_ids       = ["/subscriptions/.../backendAddressPools/backend-pool"]
+      probe_id                       = "/subscriptions/.../probes/probe-http"
       load_distribution              = "Default"
-      idle_timeout_in_minutes        = 10
-      enable_floating_ip             = false
-      disable_outbound_snat          = false
+      idle_timeout_in_minutes        = 4
+      floating_ip_enabled            = true
+      disable_outbound_snat          = true
     }
   ]
+
+  default_tags = {
+    environment = "prod"
+    managed_by  = "terraform"
+  }
 }
 ```
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 5.0 |
+
+## Providers
+
+No providers.
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | github.com/Think-Cube/terraform-azure-loadbalancer | v1.0.0 |
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->

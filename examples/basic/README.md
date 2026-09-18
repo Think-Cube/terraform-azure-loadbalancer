@@ -1,70 +1,52 @@
-# Terraform Azure Load Balancer Module – Basic Example
+﻿# Example: Basic -- Azure Load Balancer
 
-This example demonstrates a **basic deployment** of a public Azure Load Balancer with one frontend IP, a backend pool, a health probe, and a load balancing rule.
+Deploys a Standard public Load Balancer with a public IP.
 
-## Description
+```hcl
+module "load_balancer" {
+  source = "github.com/Think-Cube/terraform-azure-loadbalancer?ref=v1.0.0"
 
-- Creates a public Load Balancer with a dynamic frontend IP configuration
-- Configures a backend address pool
-- Adds a TCP health probe (port 80) and a load balancing rule
-- Suitable for development or test environments
+  resource_group_name     = "rg-example"
+  resource_group_location = "West Europe"
 
-## Features
-
-- Public IP frontend
-- Backend address pool support
-- Health probe and load balancing rule
-- Configurable idle timeout and load distribution
-- Optional floating IP and SNAT configuration
-- Tags for resource identification
-
-## Example Usage
-
-```yml
-module "lb_basic" {
-  source = "../../"
-
-  environment             = "dev"
-  region                  = "weu"
-  resource_group_name     = "rg-demo"
-  lb_name                 = "demo-lb"
-  public_ip_name          = "demo-lb-pip"
-  frontend_ip_config_name = "frontendConfig"
+  public_ip_name          = "pip-lb-example"
+  lb_name                 = "lb-example"
+  frontend_ip_config_name = "FrontendIPConfig"
 
   default_tags = {
-    project = "demo"
-    env     = "dev"
+    environment = "dev"
+    managed_by  = "terraform"
   }
-
-  lb_backend_address_pools = [
-    {
-      name            = "backend-pool"
-      loadbalancer_id = ""
-    }
-  ]
-
-  lb_probes = [
-    {
-      name            = "http-probe"
-      loadbalancer_id = ""
-      port            = 80
-    }
-  ]
-
-  lb_rules = [
-    {
-      name                           = "http-rule"
-      protocol                       = "Tcp"
-      frontend_port                  = 80
-      backend_port                   = 80
-      frontend_ip_configuration_name = "frontendConfig"
-      backend_address_pool_ids       = []
-      probe_id                       = ""
-      load_distribution              = "Default"
-      idle_timeout_in_minutes        = 4
-      enable_floating_ip             = false
-      disable_outbound_snat          = false
-    }
-  ]
 }
 ```
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 5.0 |
+
+## Providers
+
+No providers.
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | github.com/Think-Cube/terraform-azure-loadbalancer | v1.0.0 |
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
