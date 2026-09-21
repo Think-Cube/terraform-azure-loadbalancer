@@ -1,5 +1,5 @@
-﻿module "load_balancer" {
-  source = "github.com/Think-Cube/terraform-azure-loadbalancer?ref=v1.0.0"
+module "load_balancer" {
+  source = "../.."
 
   resource_group_name     = "rg-example"
   resource_group_location = "West Europe"
