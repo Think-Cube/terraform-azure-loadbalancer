@@ -1,4 +1,3 @@
-<!-- BEGIN_TF_DOCS -->
 # Example: Advanced — Azure Loadbalancer
 
 Provisions an Azure Load Balancer with frontend IP, backend pool and load balancing rules. Full-featured example with optional configuration blocks enabled.
@@ -72,17 +71,3 @@ module "load_balancer" {
   }
 }
 ```
-
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 5.0 |
-
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | ../.. | n/a |
-<!-- END_TF_DOCS -->
